@@ -1,6 +1,18 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  type FarklePlayer {
+    playerName: String!
+    scores: [Int]
+  }
+
+  type FarkleGame {
+    _id: ID
+    gameName: String!
+    startDate: String!
+    players: [FarklePlayer]
+  }
+
   type User {
     _id: ID
     firstName: String!
@@ -16,9 +28,23 @@ const typeDefs = gql`
 
   type Query {
     user: User
+    farkleGame: FarkleGame
   }
 
   type Mutation {
+
+    addFarkleGame(
+      gameName: String!
+    ) : FarkleGame
+    addFarklePlayer(
+      playerName: String!
+      gameName: String!
+    ) : FarkleGame
+    addFarkleScore(
+      playerName: String!
+      score: Int!
+    ) : FarkleGame
+
     addUser(
       firstName: String!
       lastName: String!
