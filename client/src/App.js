@@ -5,6 +5,8 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import CurrentGame from './pages/CurrentGame';
+
 
 import './App.css';
 
@@ -13,16 +15,17 @@ function App() {
     <Router>
       <div className='bg'>
       </div>
-      <div 
-      className="flex-column justify-flex-start content" 
-
-      >
+      <div className="flex-column justify-flex-start content">
         <Header />
         <div className="container">
           <Routes>
             <Route 
               path="/"
               element={<Home />}
+            />
+            <Route 
+              path="/currentGame"
+              element={<CurrentGame />}
             />
           </Routes>
         </div>

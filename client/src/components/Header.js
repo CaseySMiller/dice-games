@@ -8,7 +8,6 @@ import {
     MDBNavbarNav,
     MDBNavbarItem,
     MDBNavbarLink,
-    MDBBtn,
     MDBDropdown,
     MDBDropdownToggle,
     MDBDropdownMenu,
@@ -36,7 +35,7 @@ export default function App() {
             <MDBCollapse navbar show={showNavRight}>
                 <MDBNavbarNav right fullWidth={false} className='ms-auto mb-2 mb-lg-0'>
                     <MDBNavbarItem>
-                    <MDBNavbarLink active aria-current='page' href='#'>
+                    <MDBNavbarLink active aria-current='page' href='/currentGame'>
                         Current Game
                     </MDBNavbarLink>
                     </MDBNavbarItem>
@@ -48,8 +47,8 @@ export default function App() {
                             </MDBDropdownToggle>
                             <MDBDropdownMenu>
                                 <MDBDropdownItem link>New Farkle Game</MDBDropdownItem>
-                                <MDBDropdownItem link>New Yahtzee Game</MDBDropdownItem>
-                                <MDBDropdownItem link>Join a Game</MDBDropdownItem>
+                                <MDBDropdownItem disabled link>New Yahtzee Game</MDBDropdownItem>
+                                <MDBDropdownItem disabled link>Join a Game</MDBDropdownItem>
                             </MDBDropdownMenu>
                         </MDBDropdown>
                     </MDBNavbarItem>
