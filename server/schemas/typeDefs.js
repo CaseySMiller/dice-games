@@ -28,7 +28,9 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    farkleGame: FarkleGame
+    farkleGame(
+      gameName: String!
+    ): FarkleGame
   }
 
   type Mutation {
@@ -41,6 +43,7 @@ const typeDefs = gql`
       gameName: String!
     ) : FarkleGame
     addFarkleScore(
+      gameName: String!
       playerName: String!
       score: Int!
     ) : FarkleGame

@@ -5,14 +5,16 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    //queries not tested yet
-    farkleGame: async (parent, args, context) => {
-      const game = await FarkleGame.findById(context.farkleGame._id).populate({
+
+    farkleGame: async (parent, { gameName }) => {
+      const game = await FarkleGame.findOne( { gameName } ).populate({
         path: "players",
-        populate: { path: 'scores' },
       })
+      console.log(game);
+      return game;
     },
 
+    //user query not tested yet
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -36,7 +38,7 @@ const resolvers = {
 
     addFarklePlayer: async (parent, { playerName, gameName }) => {
       const newPlayer = {
-        name: playerName,
+        playerName: playerName,
         scores: []
       };
       return FarkleGame.findOneAndUpdate(
@@ -44,6 +46,14 @@ const resolvers = {
         { $addToSet: { players: newPlayer } },
         { new: true, runValidators: true }
       );
+    },
+
+    addFarkleScore: async (parent, { playerName, gameName, score }) => {
+      const updatedGame = await FarkleGame.findOneAndUpdate(
+        {gameName : gameName, 'players.playerName': playerName },
+        { $push: { 'players.$.scores': score} }
+      );
+      return updatedGame;
     },
 
     addUser: async (parent, { firstName, lastName, email, password }) => {

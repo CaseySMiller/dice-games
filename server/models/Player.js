@@ -2,7 +2,7 @@ const { Schema } = require("mongoose");
 
 //subdocument schema for a player in a Game
 const farklePlayerSchema = new Schema({
-    name: {
+    playerName: {
         type: String,
         required: true,
     },
