@@ -22,8 +22,6 @@ const CurrentGame = () => {
     const [varyingPlayer, setVaryingPlayer] = useState('');
     const [varyingModal, setVaryingModal] = useState(false);
     const [varyingScores, setVaryingScores] = useState('');
-    const [varyingMessage, setVaryingMessage] = useState('');
-
 
 
     return (
@@ -115,7 +113,7 @@ const CurrentGame = () => {
             </MDBContainer>
 
 
-            {/* begin modal */}
+            {/* begin modal for score history */}
 
             <MDBModal show={varyingModal} setShow={setVaryingModal} tabIndex='-1'>
                 <MDBModalDialog>

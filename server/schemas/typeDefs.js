@@ -29,7 +29,7 @@ const typeDefs = gql`
   type Query {
     user: User
     farkleGame(
-      gameName: String!
+      _id: ID!
     ): FarkleGame
   }
 
@@ -40,10 +40,10 @@ const typeDefs = gql`
     ) : FarkleGame
     addFarklePlayer(
       playerName: String!
-      gameName: String!
+      gameId: ID!
     ) : FarkleGame
     addFarkleScore(
-      gameName: String!
+      gameId: ID!
       playerName: String!
       score: Int!
     ) : FarkleGame

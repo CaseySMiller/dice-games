@@ -6,8 +6,8 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
 
-    farkleGame: async (parent, { gameName }) => {
-      const game = await FarkleGame.findOne( { gameName } ).populate({
+    farkleGame: async (parent, { _id }) => {
+      const game = await FarkleGame.findOne( { _id } ).populate({
         path: "players",
       })
       console.log(game);
@@ -33,24 +33,24 @@ const resolvers = {
   Mutation: {
     addFarkleGame: async (parent, { gameName }) => {
       const newGame = await FarkleGame.create({ gameName });
-      return { newGame };
+      return newGame;
     },
 
-    addFarklePlayer: async (parent, { playerName, gameName }) => {
+    addFarklePlayer: async (parent, { playerName, gameId }) => {
       const newPlayer = {
         playerName: playerName,
         scores: []
       };
       return FarkleGame.findOneAndUpdate(
-        { gameName : gameName },
+        { _id : gameId },
         { $addToSet: { players: newPlayer } },
         { new: true, runValidators: true }
       );
     },
 
-    addFarkleScore: async (parent, { playerName, gameName, score }) => {
+    addFarkleScore: async (parent, { playerName, gameId, score }) => {
       const updatedGame = await FarkleGame.findOneAndUpdate(
-        {gameName : gameName, 'players.playerName': playerName },
+        {_id : gameId, 'players.playerName': playerName },
         { $push: { 'players.$.scores': score} }
       );
       return updatedGame;
