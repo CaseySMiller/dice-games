@@ -28,6 +28,17 @@
   color: #61dafb;
 }
 
+.farkle-row {
+  background-color: aqua;
+}
+
+.center-all {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
