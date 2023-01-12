@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
         MDBContainer,
         MDBRow, 
@@ -7,13 +7,24 @@ import {
         MDBCardBody,
         MDBCardTitle,
         MDBCardText,
-        MDBTable, 
-        MDBTableHead, 
-        MDBTableBody,
-        MDBBtn
+        MDBBtn,
+        MDBModal,
+        MDBModalDialog,
+        MDBModalContent,
+        MDBModalHeader,
+        MDBModalTitle,
+        MDBModalBody,
+        MDBModalFooter,
     } from 'mdb-react-ui-kit';
 
 const CurrentGame = () => {
+
+    const [varyingPlayer, setVaryingPlayer] = useState('');
+    const [varyingModal, setVaryingModal] = useState(false);
+    const [varyingScores, setVaryingScores] = useState('');
+    const [varyingMessage, setVaryingMessage] = useState('');
+
+
 
     return (
         <>
@@ -42,7 +53,14 @@ const CurrentGame = () => {
                                                     1600
                                                 </MDBCol>
                                                 <MDBCol size='2' className='d-flex justify-content-end p-0'>
-                                                        <MDBBtn className='height=100% fs-3 center-all'>
+                                                        <MDBBtn 
+                                                        className='height=100% fs-3 center-all'
+                                                        onClick={() => {
+                                                            setVaryingPlayer('Casey Scott Miller');
+                                                            setVaryingModal(!varyingModal);
+                                                            setVaryingScores([100, 100, 100]);
+                                                        }}
+                                                        >
                                                             +
                                                         </MDBBtn>
                                                 </MDBCol>
@@ -55,7 +73,14 @@ const CurrentGame = () => {
                                                     1600
                                                 </MDBCol>
                                                 <MDBCol size='2' className='d-flex justify-content-end p-0'>
-                                                        <MDBBtn className='height=100% fs-3 center-all'>
+                                                        <MDBBtn
+                                                        className='height=100% fs-3 center-all'
+                                                        onClick={() => {
+                                                            setVaryingPlayer('Reno M.');
+                                                            setVaryingModal(!varyingModal);
+                                                            setVaryingScores([200, 100, 100]);
+                                                        }}
+                                                        >
                                                             +
                                                         </MDBBtn>
                                                 </MDBCol>
@@ -68,7 +93,14 @@ const CurrentGame = () => {
                                                     1600
                                                 </MDBCol>
                                                 <MDBCol size='2' className='d-flex justify-content-end p-0'>
-                                                        <MDBBtn className='height=100% fs-3 center-all'>
+                                                        <MDBBtn
+                                                        className='height=100% fs-3 center-all'
+                                                        onClick={() => {
+                                                            setVaryingPlayer('Cody Miller');
+                                                            setVaryingModal(!varyingModal);
+                                                            setVaryingScores([300, 100, 100]);
+                                                        }}
+                                                        >
                                                             +
                                                         </MDBBtn>
                                                 </MDBCol>
@@ -80,8 +112,41 @@ const CurrentGame = () => {
                         </div>
                     </MDBCol>
                 </MDBRow>
-
             </MDBContainer>
+
+
+            {/* begin modal */}
+
+            <MDBModal show={varyingModal} setShow={setVaryingModal} tabIndex='-1'>
+                <MDBModalDialog>
+                <MDBModalContent>
+                    <MDBModalHeader>
+                    <MDBModalTitle>{varyingPlayer}</MDBModalTitle>
+                    <MDBBtn className='btn-close' color='none' onClick={() => setVaryingModal(!varyingModal)}></MDBBtn>
+                    </MDBModalHeader>
+                    <MDBModalBody>
+                        <MDBRow className='border-top'>
+                        {varyingScores[0]}
+                        </MDBRow>
+                        <MDBRow className='border-top'>
+                        {varyingScores[1]}
+                        </MDBRow>
+                        <MDBRow className='border-top'>
+                        {varyingScores[2]}
+                        </MDBRow>
+                        <MDBRow className='border-top'>
+                        </MDBRow>
+                    </MDBModalBody>
+                    <MDBModalFooter>
+                        {`Total Score ${varyingScores[0]+varyingScores[1]+varyingScores[2]}`}
+                        <MDBBtn color='secondary' onClick={() => setVaryingModal(!varyingModal)}>
+                            Close
+                        </MDBBtn>
+                    </MDBModalFooter>
+                </MDBModalContent>
+                </MDBModalDialog>
+            </MDBModal>
+
         </>
     );
 };
@@ -91,107 +156,3 @@ export default CurrentGame;
 
 
 // old code
-
-{/* <MDBTable small responsive align='middle'>
-<MDBTableHead light>
-    <tr>
-        <th>
-            Casey M.
-        </th>
-        <th>
-            Reno M.
-        </th>
-        <th>
-            Cody M.
-        </th>
-        <th>
-            April M.
-        </th>
-        <th>
-            Dennis M.
-        </th>
-    </tr>
-</MDBTableHead>
-<MDBTableBody>
-    <tr>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-    </tr>
-    <tr>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-    </tr>
-    <tr>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            1000
-        </td>
-    </tr>
-    <tr>
-        <td>
-            500
-        </td>
-        <td>
-            <MDBBtn>
-                Add Score
-            </MDBBtn>
-        </td>
-    </tr>
-</MDBTableBody>
-<tfoot>
-    <tr className='table-active'>
-        <td>
-            <b>3500</b>
-        </td>
-        <td>
-            <b>3000</b>
-        </td>
-        <td>
-            <b>3000</b>
-        </td>
-        <td>
-            <b>3000</b>
-        </td>
-        <td>
-            <b>3000</b>
-        </td>
-    </tr>
-</tfoot>
-</MDBTable> */}
