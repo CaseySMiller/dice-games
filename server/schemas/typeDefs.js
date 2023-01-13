@@ -3,6 +3,7 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type FarklePlayer {
     playerName: String!
+    userId: User
     scores: [Int]
   }
 
@@ -19,6 +20,8 @@ const typeDefs = gql`
     lastName: String!
     email: String!
     password: String!
+    friends: [User]
+    farkleGames: [FarkleGame]
   }
 
   type Auth {

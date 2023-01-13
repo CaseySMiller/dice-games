@@ -18,8 +18,8 @@ const resolvers = {
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          // path: "orders",
-          // populate: { path: 'products' },
+          // path: "friends",
+          // path: "farkleGames",
         });
         // user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
         return user;
@@ -72,9 +72,18 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
+    // needs testing
+    // addFriend: async (parent, args, context) => {
+    //   if (context.user) {
+    //     return await User.findByIdAndUpdate(context.user._id, args, {
+    //       new: true,
+    //     });
+    //   }
+    // }
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
+      console.log('--------------------------got to here')
       if (!user) {
         throw new AuthenticationError("Incorrect credentials");
       }

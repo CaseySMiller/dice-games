@@ -23,6 +23,18 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
+  farkleGames: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'FarkleGame'
+    }
+  ],
 });
 
 userSchema.pre("save", async function (next) {
