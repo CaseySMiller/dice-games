@@ -17,6 +17,9 @@ import Home from './pages/Home';
 import CurrentGame from './pages/CurrentGame';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import Join from './pages/Join';
+import NewFarkle from './pages/NewFarkle';
+import PastGames from "./pages/PastGames";
 
 
 import './App.css';
@@ -69,6 +72,18 @@ function App() {
               <Route 
                 path="/profile"
                 element={<Profile />}
+              />
+              <Route 
+                path="/join"
+                element={<Join />}
+              />
+              <Route 
+                path="/newfarkle"
+                element={<NewFarkle />}
+              />
+              <Route 
+                path="/pastgames"
+                element={<PastGames />}
               />
             </Routes>
           </div>

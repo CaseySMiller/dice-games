@@ -44,6 +44,7 @@ const typeDefs = gql`
     ) : FarkleGame
     addFarklePlayer(
       playerName: String!
+      userId: String
       gameId: ID!
     ) : FarkleGame
     addFarkleScore(

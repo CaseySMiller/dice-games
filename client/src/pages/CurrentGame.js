@@ -114,6 +114,7 @@ const CurrentGame = () => {
 
 
             {/* begin modal for score history */}
+            {/* This modal will work for score on all individual players */}
 
             <MDBModal show={varyingModal} setShow={setVaryingModal} tabIndex='-1'>
                 <MDBModalDialog>

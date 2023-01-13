@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import Auth from '../utils/auth'
+
 import {
     MDBContainer,
     MDBNavbar,
@@ -16,6 +19,26 @@ import {
 } from 'mdb-react-ui-kit';
 
 export default function App() {
+
+    // console.log(Auth.getProfile().data);
+
+    const loggedIn = Auth.loggedIn();
+    const currentUser = loggedIn ? Auth.getProfile().data : {};
+
+
+    // const renderLogMenu = () => {
+    //     if (loggedIn) {
+    //         return
+    //         <MDBDropdownItem link>View past games</MDBDropdownItem>
+    //         <MDBDropdownItem link>Update User Profile</MDBDropdownItem>
+    //         <MDBDropdownItem link>Log Out</MDBDropdownItem>
+    //     }
+    // }
+
+
+
+
+    //nav bar state
     const [showNavRight, setShowNavRight] = useState(false);
 
     return (
@@ -46,9 +69,21 @@ export default function App() {
                                 Games
                             </MDBDropdownToggle>
                             <MDBDropdownMenu>
-                                <MDBDropdownItem link>New Farkle Game</MDBDropdownItem>
+                                <MDBDropdownItem 
+                                link href='/join'>Join a Game</MDBDropdownItem>
+                                <MDBDropdownItem 
+                                className={loggedIn ? '' : 'no-display'}
+                                link href='/newfarkle'
+                                >
+                                    New Farkle Game
+                                </MDBDropdownItem>
                                 <MDBDropdownItem disabled link>New Yahtzee Game</MDBDropdownItem>
-                                <MDBDropdownItem disabled link>Join a Game</MDBDropdownItem>
+                                <MDBDropdownItem 
+                                className={loggedIn ? '' : 'no-display'}
+                                link href='/pastGames'
+                                >
+                                    Past Games
+                                </MDBDropdownItem>
                             </MDBDropdownMenu>
                         </MDBDropdown>
                     </MDBNavbarItem>
@@ -56,12 +91,20 @@ export default function App() {
                     <MDBNavbarItem>
                         <MDBDropdown>
                             <MDBDropdownToggle tag='a' className='nav-link'>
-                                User Name
+                                {loggedIn ? currentUser.userName : 'Log In'}
                             </MDBDropdownToggle>
                             <MDBDropdownMenu>
-                                <MDBDropdownItem link>View past games</MDBDropdownItem>
-                                <MDBDropdownItem link>Update User Profile</MDBDropdownItem>
-                                <MDBDropdownItem link>Log Out</MDBDropdownItem>
+                                <MDBDropdownItem 
+                                link href={loggedIn ? '#' : '/login'}
+                                >
+                                    {loggedIn ? 'Log Out' : 'Log In/Sign Up'}
+                                </MDBDropdownItem>
+                                <MDBDropdownItem 
+                                link href='/profile'
+                                className={loggedIn ? '' : 'no-display'}
+                                >
+                                    User Profile
+                                </MDBDropdownItem>
                             </MDBDropdownMenu>
                         </MDBDropdown>
                     </MDBNavbarItem>

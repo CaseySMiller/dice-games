@@ -6,7 +6,6 @@ const farkleGameSchema = new Schema(
         gameName : {
             type : String,
             required : true,
-            unique : true,
         },
         startDate: {
             type: Date,
