@@ -17,10 +17,11 @@ const resolvers = {
     //user query not tested yet
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
+        const user = await User.findById(context.user._id)
+        .populate('farkleGames', 'friends')
           // path: "friends",
           // path: "farkleGames",
-        });
+        // });
         // user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
         return user;
       }
@@ -83,7 +84,6 @@ const resolvers = {
 
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-      console.log('--------------------------got to here')
       if (!user) {
         throw new AuthenticationError("Incorrect credentials");
       }

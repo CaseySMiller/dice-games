@@ -16,6 +16,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import CurrentGame from './pages/CurrentGame';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
 
 
 import './App.css';
@@ -27,6 +28,7 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
+  // console.log(token);
   return {
     headers: {
       ...headers,
@@ -37,6 +39,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
+  // link: from( [ authLink, httpLink ] ),
   cache: new InMemoryCache(),
 });
 
@@ -62,6 +65,10 @@ function App() {
               <Route 
                 path="/login"
                 element={<Login />}
+              />
+              <Route 
+                path="/profile"
+                element={<Profile />}
               />
             </Routes>
           </div>
