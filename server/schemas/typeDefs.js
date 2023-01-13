@@ -16,9 +16,10 @@ const typeDefs = gql`
 
   type User {
     _id: ID
-    firstName: String!
-    lastName: String!
-    email: String!
+    userName: String!
+    firstName: String
+    lastName: String
+    email: String
     password: String!
     friends: [User]
     farkleGames: [FarkleGame]
@@ -52,9 +53,10 @@ const typeDefs = gql`
     ) : FarkleGame
 
     addUser(
-      firstName: String!
-      lastName: String!
-      email: String!
+      userName: String!
+      firstName: String
+      lastName: String
+      email: String
       password: String!
     ): Auth
     updateUser(
@@ -63,7 +65,7 @@ const typeDefs = gql`
       email: String
       password: String
     ): User
-    login(email: String!, password: String!): Auth
+    login(userName: String!, password: String!): Auth
   }
 `;
 

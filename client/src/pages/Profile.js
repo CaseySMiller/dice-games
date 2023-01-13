@@ -25,7 +25,7 @@ const Profile = () => {
             <MDBContainer className='p-2'>
                 <p>this profile is for {userData.firstName} {userData.lastName}</p>
                 <p>your email is {userData.email}</p>
-                <p>your id is {userData.email}</p>
+                <p>your id is {userData._id}</p>
                 <p>you have played {fNum} games of farkle</p>
             </MDBContainer>
         </>

@@ -57,8 +57,8 @@ const resolvers = {
       return updatedGame;
     },
 
-    addUser: async (parent, { firstName, lastName, email, password }) => {
-      const user = await User.create({ firstName, lastName, email, password });
+    addUser: async (parent, { userName, firstName, lastName, email, password }) => {
+      const user = await User.create({ userName, firstName, lastName, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -82,8 +82,8 @@ const resolvers = {
     //   }
     // }
 
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+    login: async (parent, { userName, password }) => {
+      const user = await User.findOne({ userName });
       if (!user) {
         throw new AuthenticationError("Incorrect credentials");
       }

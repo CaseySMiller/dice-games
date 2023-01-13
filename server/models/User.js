@@ -2,19 +2,24 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema({
-  firstName: {
+  userName: {
     type: String,
     required: true,
     trim: true,
+    minlength: 4,
+  },
+  firstName: {
+    type: String,
+    trim: true,
+    default: 'dice',
   },
   lastName: {
     type: String,
-    required: true,
     trim: true,
+    default: 'player',
   },
   email: {
     type: String,
-    required: true,
     unique: true,
     match: [/.+@.+\..+/, "Must match an email address!"],
   },
