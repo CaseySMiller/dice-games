@@ -17,15 +17,16 @@ const Profile = () => {
     }, [loading]);
 
     console.log(data);
-
+    //check for length of farkleGames array
+    let fNum = userData.farkleGames?.length || 0;
 
     return (
         <>
             <MDBContainer className='p-2'>
                 <p>this profile is for {userData.firstName} {userData.lastName}</p>
                 <p>your email is {userData.email}</p>
-                <p>you rid is {userData.email}</p>
-                <p>you have played {userData.farkleGames.length} games of farkle</p>
+                <p>your id is {userData.email}</p>
+                <p>you have played {fNum} games of farkle</p>
             </MDBContainer>
         </>
     );
