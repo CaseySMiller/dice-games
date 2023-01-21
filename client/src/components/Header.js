@@ -25,19 +25,6 @@ export default function App() {
     const loggedIn = Auth.loggedIn();
     const currentUser = loggedIn ? Auth.getProfile().data : {};
 
-
-    // const renderLogMenu = () => {
-    //     if (loggedIn) {
-    //         return
-    //         <MDBDropdownItem link>View past games</MDBDropdownItem>
-    //         <MDBDropdownItem link>Update User Profile</MDBDropdownItem>
-    //         <MDBDropdownItem link>Log Out</MDBDropdownItem>
-    //     }
-    // }
-
-
-
-
     //nav bar state
     const [showNavRight, setShowNavRight] = useState(false);
 
